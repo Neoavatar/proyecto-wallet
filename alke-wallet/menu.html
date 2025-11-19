@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Billetera - Menú Principal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link href="./assets/css/styles.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="card shadow-sm p-4 wallet-card">
+    <h2 class="text-center mb-3">Menú Principal</h2>
+    
+    <!-- Saldo Actual -->
+    <div class="text-center my-3 texto-centrado">
+      <p class="text-muted mb-1">Saldo Actual</p>
+      <h1 id="saldo-actual" class="display-5 fw-bold texto-animado">$0</h1>
+    </div>
+
+    <!-- Botones de Acción -->
+    <div class="d-grid gap-3 mt-3">
+      <a href="deposit.html" class="btn btn-primary btn-lg">Realizar Depositar</a>
+      <a href="sendmoney.html" class="btn btn-outline-primary btn-lg">Enviar Dinero</a>
+      <a href="transactions.html" class="btn btn-outline-primary btn-lg">Últimos Movimientos</a>
+    </div>
+
+    <!-- Botón de Salir -->
+    <div class="d-grid mt-4">
+      <a href="./login.html" class="btn btn-link text-danger">Cerrar Sesión</a>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script src="./assets/js/script-menu.js"></script>
+</body>
+</html>

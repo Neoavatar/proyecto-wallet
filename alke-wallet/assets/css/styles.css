@@ -1,0 +1,62 @@
+.marquesina {
+  width: 100%;
+  overflow: hidden; /* Oculta el texto que se sale de los bordes */
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+}
+
+.texto-marquesina {
+  display: inline-block; /* Permite aplicar transformaciones */
+  padding-left: 100%; /* Inicia la animación desde la derecha */
+  animation: marquesina 10s linear infinite; /* Aplica la animación */
+}
+
+/* Define la animación */
+/*
+@keyframes marquesina {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%); /* Mueve el texto de izquierda a derecha 
+  }
+}
+*/
+
+.texto-centrado {
+  width: 100%;
+  overflow: hidden;
+}
+
+.texto-animado {
+  display: inline-block; /* Permite aplicar transformaciones */
+  animation: texto-centrado 2s forwards ease-out; /* Aplica la animación */
+}
+
+/* Define la animación */
+@keyframes texto-centrado {
+    0% {
+        /* Comienza completamente fuera de la vista a la izquierda */
+        transform: translateX(100vw); 
+        opacity: 0;
+    }
+    100% {
+        /* Termina en su posición final centrada y visible */
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+body, html {
+    height: 100%;
+}
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+}
+.wallet-card {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto; /* Centrado */
+}
