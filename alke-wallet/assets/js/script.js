@@ -1,6 +1,7 @@
 const alertPlaceholder = document.getElementById('alert-placeholder');
 const TIEMPO = 2000; //2 segundos
 
+/*
 function iniciar_sesion(){
     email_correcto = "user@test.com";
     passwd_correcto = "pass123";
@@ -14,7 +15,7 @@ function iniciar_sesion(){
         showAlert('Email incorrecto. Por favor, intente de nuevo.', 'danger');
         return;
     }*/
-
+/*
     if (email === email_correcto && password === passwd_correcto) {
         showAlert('Inicio de sesión exitoso. Redirigiendo al menú principal...', 'success');
         setTimeout(() => window.location.href = './menu.html', TIEMPO);
@@ -22,7 +23,36 @@ function iniciar_sesion(){
         showAlert('Email o contraseña incorrectos. Por favor, intente de nuevo.', 'danger');
         return;
     }
-};
+};*/
+
+/* LOGIN CON JQUERY */
+// $(document).ready(...) asegura que el código corra cuando la página cargó
+$(document).ready(function() {
+    $('#login-form').submit(function(event) {        
+        // Prevenimos que la página se recargue automáticamente
+        event.preventDefault();
+        // Credenciales correctas
+        const email_correcto = "user@test.com";
+        const passwd_correcto = "pass123";
+
+        const email = $('#email').val().trim();
+        const password = $('#password').val().trim();
+        // Validación básica
+        if (email === "" || password === "") {
+            showAlert('Por favor, completa todos los campos.', 'warning');
+            return;
+        }
+        // Validación de credenciales
+        if (email === email_correcto && password === passwd_correcto) {
+            showAlert('Inicio de sesión exitoso. Redirigiendo al menú principal...', 'success');
+            setTimeout(() => {
+                window.location.href = './menu.html';
+            }, TIEMPO);
+        } else {
+            showAlert('Email o contraseña incorrectos. Por favor, intente de nuevo.', 'danger');
+        }
+    });
+});
 
 const showAlert = (message, type) => {
     alertPlaceholder.innerHTML = `
