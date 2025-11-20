@@ -11,77 +11,96 @@
 
   <div class="card shadow-sm p-4 wallet-card">
     <h2 class="text-center mb-4">Enviar Dinero</h2>
+    <!-- Alerta -->
+    <div id="alert-placeholder"></div>
     
     <!-- Formulario de Búsqueda -->
     <form class="mb-3">
       <label for="searchContact" class="form-label">Buscar en la agenda</label>
       <div class="input-group">
-        <input type="text" class="form-control" id="searchContact" placeholder="Nombre, CBU o Alias">
-        <button class="btn btn-outline-secondary" type="button" id="button-search">Buscar</button>
+        <input type="text"  id="buscarContacto" class="form-control" placeholder="Nombre, Apellido, CBU o Alias">
+        <button type="button" class="btn btn-outline-secondary" id="btn-buscar">Buscar</button>
       </div>
     </form>
 
     <!-- Botón para Agregar Contacto (abre el modal) -->
     <div class="d-grid mb-3">
-      <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addContactModal">
+      <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#datos_contacto">
         + Agregar Nuevo Contacto
       </button>
     </div>
 
     <!-- Lista de Contactos -->
     <h5 class="mt-4">Contactos Guardados</h5>
-    <div class="list-group list-group-flush">
+    <div id="lista-contactos" class="list-group list-group-flush">
       <a href="#" class="list-group-item list-group-item-action">
         <div class="d-flex w-100 justify-content-between">
-          <h6 class="mb-1">John Doe</h6>
+          <h6 class="mb-1">Juan Perez</h6>
         </div>
-        <small class="text-muted">CBU: 123456789 - ABC Bank</small>
+        <small class="text-muted">CBU: 123456789 - Banco Estado</small>
       </a>
       <a href="#" class="list-group-item list-group-item-action">
         <div class="d-flex w-100 justify-content-between">
-          <h6 class="mb-1">Jane Smith</h6>
+          <h6 class="mb-1">Perico Los Palotes</h6>
         </div>
-        <small class="text-muted">Alias: jane.smith - XYZ Bank</small>
+        <small class="text-muted">CBU: 987654321 - Banco Santander</small>
       </a>
+    </div>
+
+    <div class="mt-4 mb-3">
+      <label for="montoEnvio" class="form-label">Monto a transferir</label>
+      <div class="input-group">
+        <span class="input-group-text">$</span>
+        <input type="number" id="montoEnvio" class="form-control" placeholder="0" min="0">
+      </div>
     </div>
 
     <!-- Botón Depositar (Seleccionar y Depositar)-->
     <div class="d-grid mt-4">
-      <a href="./deposit.html" class="btn btn-primary">Enviar Dinero</a>
-    </div>
-    <!-- Botón de Volver -->
-    <div class="d-grid mt-4">
-      <a href="./menu.html" class="btn btn-secondary">Volver al Menú</a>
+      <button type="button" id="btn-realizar-envio" class="btn btn-primary">Enviar Dinero</button>
     </div>
 
-    <!-- Botón de Salir -->
+    <!-- Botón de Volver -->
     <div class="d-grid mt-4">
-      <a href="./login.html" class="btn btn-link text-danger">Cerrar Sesión</a>
+      <a href="" id="btn-menu" class="btn btn-secondary">Volver al Menú</a>
+    </div>
+
+    <!-- Botón de Cerrar Sesión -->
+    <div class="d-grid mt-4">
+      <a href="" id="btn-logout" class="btn btn-link text-danger">Cerrar Sesión</a>
     </div>
   </div>
 
   <!-- Modal para Agregar Nuevo Contacto -->
-  <div class="modal fade" id="addContactModal" tabindex="-1" aria-labelledby="addContactModalLabel" aria-hidden="true">
+  <div class="modal fade" id="datos_contacto" tabindex="-1" aria-labelledby="datos_contacto_label">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="addContactModalLabel">Agregar Nuevo Contacto</h5>
+          <h5 class="modal-title" id="datos_contacto_label">Agregar Nuevo Contacto</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <!-- Formulario dentro del modal -->
           <form>
             <div class="mb-3">
-              <label for="contactName" class="form-label">Nombre</label>
-              <input type="text" class="form-control" id="contactName">
+              <label for="info_nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="info_nombre">
             </div>
             <div class="mb-3">
-              <label for="contactCbu" class="form-label">CBU o Alias</label>
-              <input type="text" class="form-control" id="contactCbu">
+              <label for="info_apellido" class="form-label">Apellido</label>
+              <input type="text" class="form-control" id="info_apellido">
             </div>
             <div class="mb-3">
-              <label for="contactBank" class="form-label">Banco</label>
-              <input type="text" class="form-control" id="contactBank">
+              <label for="info_cbu" class="form-label">CBU</label>
+              <input type="number" class="form-control" id="info_cbu">
+            </div>
+            <div class="mb-3">
+              <label for="info_alias" class="form-label">Alias</label>
+              <input type="number" class="form-control" id="info_alias">
+            </div>
+            <div class="mb-3">
+              <label for="info_banco" class="form-label">Banco</label>
+              <input type="text" class="form-control" id="info_banco">
             </div>
           </form>
         </div>
@@ -95,5 +114,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script src="./assets/js/script.js"></script>
 </body>
 </html>
