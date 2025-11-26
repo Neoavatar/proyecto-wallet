@@ -17,49 +17,24 @@
     <!-- Alerta -->
     <div id="alert_placeholder"></div>
     
+    <!-- FILTRO POR TIPO -->
+    <div class="mb-3">
+        <label for="filtro_tipo" class="form-label">Filtrar por:</label>
+        <select id="filtro_tipo" class="form-select">
+            <option value="todos">Todos los movimientos</option>
+            <option value="deposito">Depósitos</option>
+            <option value="compra">Compras</option>
+            <option value="pago">Pagos</option>
+            <option value="transferencia">Transferencias Recibidas</option>
+        </select>
+    </div>
     <!-- Lista de Movimientos -->
-    <ul class="list-group list-group-flush">
-      <!-- Movimiento 1 (Gasto) -->
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        <div>
-          <h6 class="mb-0">Compra en línea</h6>
-          <small class="text-muted">11 Nov 2025</small>
-        </div>
-        <span class="text-danger fw-bold">-$50.00</span>
-      </li>
-      <!-- Movimiento 2 (Ingreso) -->
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        <div>
-          <h6 class="mb-0">Depósito</h6>
-          <small class="text-muted">10 Nov 2025</small>
-        </div>
-        <span class="text-success fw-bold">+$100.00</span>
-      </li>
-      <!-- Movimiento 3 (Ingreso) -->
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        <div>
-          <h6 class="mb-0">Transferencia recibida</h6>
-          <small class="text-muted">10 Nov 2025</small>
-        </div>
-        <span class="text-success fw-bold">+$75.00</span>
-      </li>
-      <!-- Movimiento 4 (Gasto) -->
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        <div>
-          <h6 class="mb-0">Compra en línea</h6>
-          <small class="text-muted">09 Nov 2025</small>
-        </div>
-        <span class="text-danger fw-bold">-$5,550.00</span>
-      </li>
-      <!-- Movimiento 5 (Ingreso) -->
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        <div>
-          <h6 class="mb-0">Depósito misma cuenta</h6>
-          <small class="text-muted">08 Nov 2025</small>
-        </div>
-        <span class="text-success fw-bold">+$10,500.00</span>
-      </li>
+    <ul id="lista_movimientos" class="list-group list-group-flush">
     </ul>
+    <!-- Mensaje sin movimientos -->
+    <div id="mensaje_sin_movimientos" class="text-center text-muted mt-3" style="display: none;">
+        <small>No hay movimientos para mostrar.</small>
+    </div>
 
     <!-- Botón de Volver -->
     <div class="d-grid mt-4">

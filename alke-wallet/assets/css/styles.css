@@ -46,17 +46,21 @@
     }
 }
 
-body, html {
+html {
     height: 100%;
 }
 body {
+    min-height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    /*align-items: center;*/
+    /*justify-content: center;*/
     background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .wallet-card {
     width: 100%;
     max-width: 400px;
-    margin: 0 auto; /* Centrado */
+    margin: auto; /* Centrado */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }

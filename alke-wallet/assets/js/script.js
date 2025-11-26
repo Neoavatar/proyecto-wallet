@@ -107,7 +107,7 @@ btn_mensajeRedireccion('btn_logout', 'Cerrando sesión...', './login.html');
 let saldoInicial = 1000000; // Monto inicial*/
 let saldoActual = 0;
 
-// Si ya existe un saldo en la "memoria" del navegador, lo usamos
+// Si ya existe un saldo en localStoragelo usamos
 if (localStorage.getItem("saldo")) {
     saldoActual = parseInt(localStorage.getItem("saldo"));
 } else {
@@ -203,7 +203,7 @@ $(document).ready(function() {
         $('#saldo_actual').text("$" + nuevoSaldo.toLocaleString('es-CL'));
 
         // 4. MOSTRAR ALERTA DE BOOTSTRAP DE ÉXITO
-        // Creamos la alerta dinámicamente con jQuery
+        // Creamos la alerta con jQuery
         let alertaExito = `
             <div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
                 <strong>¡Depósito Exitoso!</strong> 
@@ -219,10 +219,10 @@ $(document).ready(function() {
         // Limpiar el input
         $('#monto_deposito').val('').focus();
 
-        // 5. REDIRIGIR DESPUÉS DE 3 SEGUNDOS
+        // 5. REDIRIGIR DESPUÉS DE 4 SEGUNDOS
         setTimeout(function() {
             window.location.href = './menu.html';
-        }, (TIEMPO));
+        }, (TIEMPO+TIMEPO));
     });
 });
 
@@ -236,7 +236,7 @@ $(document).ready(function() {
     // Variables globales para esta sección
     let contactoSeleccionado = null;
 
-    // --- FUNCIÓN HELPER PARA CREAR HTML DE CONTACTO ---
+    // --- FUNCIÓN PARA CREAR HTML DE CONTACTO ---
     const crearHtmlContacto = (nombre, cbu, banco, alias) => {
         return `
             <a href="#" class="list-group-item list-group-item-action contacto_item">
@@ -256,7 +256,7 @@ $(document).ready(function() {
         `;
     };
 
-    // --- 0. CARGAR CONTACTOS GUARDADOS AL INICIAR ---
+    // --- CARGAR CONTACTOS GUARDADOS ---
     // Verificamos si estamos en la página de envío (si existe la lista)
     if ($('#lista_contactos').length) {
         // Obtenemos el array de contactos o un array vacío si es la primera vez
@@ -409,4 +409,89 @@ $(document).ready(function() {
         }, TIEMPO);
     });
 
+});
+
+/* ==========================================
+   LÓGICA DE ÚLTIMOS MOVIMIENTOS (transactions.html)
+   ========================================== */
+$(document).ready(function() {
+    
+    // Ejecutamos esto si estamos en la página de transacciones
+    if ($('#lista_movimientos').length) {
+
+        // 1. DATOS FICTICIOS (Simulando "La lista real")
+        const listaTransacciones = [
+            { id: 1, tipo: 'compra', descripcion: 'Compra en Supermercado', fecha: '11 Nov 2025', monto: -50000 },
+            { id: 2, tipo: 'deposito', descripcion: 'Depósito en Efectivo', fecha: '10 Nov 2025', monto: 100000 },
+            { id: 3, tipo: 'transferencia', descripcion: 'Recibido de Juan Perez', fecha: '10 Nov 2025', monto: 75000 },
+            { id: 4, tipo: 'compra', descripcion: 'Pago Netflix', fecha: '09 Nov 2025', monto: -5500 },
+            { id: 5, tipo: 'deposito', descripcion: 'Depósito cajero automático', fecha: '08 Nov 2025', monto: 10500 },
+            { id: 6, tipo: 'compra', descripcion: 'Farmacia Cruz Verde', fecha: '07 Nov 2025', monto: -12990 },
+            { id: 7, tipo: 'transferencia', descripcion: 'Recibido de Mamá', fecha: '05 Nov 2025', monto: 20000 },
+            { id: 8, tipo: 'pago', descripcion: 'Tarjeta de Crédito', fecha: '03 Nov 2025', monto: -200000 },
+            { id: 9, tipo: 'pago', descripcion: 'Cuenta de la Luz', fecha: '08 Nov 2025', monto: -45000 }
+        ];
+
+        // 2. FUNCIÓN PARA OBTENER TIPO ELEGIBLE
+        const getTipoTransaccion = (tipo) => {
+            switch(tipo) {
+                case 'pago': return 'Pagos';
+                case 'compra': return 'Compra';
+                case 'deposito': return 'Depósito';
+                case 'transferencia': return 'Transferencia Recibida';
+                default: return 'Movimiento';
+            }
+        };
+
+        // 3. FUNCIÓN PRINCIPAL PARA MOSTRAR LA LISTA
+        const mostrarUltimosMovimientos = (filtro = 'todos') => {
+            const contenedor = $('#lista_movimientos');
+            contenedor.empty(); // Limpiamos la lista actual
+
+            // Filtramos
+            const movimientosFiltrados = listaTransacciones.filter(t => {
+                if (filtro === 'todos') return true;
+                return t.tipo === filtro;
+            });
+
+            // Si no hay resultados
+            if (movimientosFiltrados.length === 0) {
+                $('#mensaje_sin_movimientos').show();
+                return;
+            } else {
+                $('#mensaje_sin_movimientos').hide();
+            }
+
+            // Generamos el HTML por cada movimiento
+            movimientosFiltrados.forEach(mov => {
+                // Definimos color: verde si es positivo (>0), rojo si es negativo
+                const claseColor = mov.monto > 0 ? 'text-success' : 'text-danger';
+                const simbolo = mov.monto > 0 ? '+' : ''; // Agregamos + solo si es positivo
+
+                const itemHTML = `
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                          <h6 class="mb-0 fw-bold">${mov.descripcion}</h6>
+                          <small class="text-muted d-block">${getTipoTransaccion(mov.tipo)}</small>
+                          <small class="text-muted" style="font-size: 0.8rem;">${mov.fecha}</small>
+                        </div>
+                        <span class="${claseColor} fw-bold fs-5">
+                            ${simbolo}$${mov.monto.toLocaleString('es-CL')}
+                        </span>
+                    </li>
+                `;
+                contenedor.append(itemHTML);
+            });
+        };
+
+        // 4. INICIALIZACIÓN
+        // Mostrar todos al cargar la página
+        mostrarUltimosMovimientos();
+
+        // 5. BUSQUEDA POR FILTRO (SELECT)
+        $('#filtro_tipo').change(function() {
+            const valorSeleccionado = $(this).val();
+            mostrarUltimosMovimientos(valorSeleccionado);
+        });
+    }
 });
