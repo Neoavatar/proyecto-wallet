@@ -3,55 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Billetera - Últimos Movimientos</title>
-  <!-- Link a JQuery 3.x -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-  <!-- Link a Bootstrap 5.3.8 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <title>Alke Wallet - Movimientos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <link href="./assets/css/styles.css" rel="stylesheet">
 </head>
 <body>
 
-  <div class="card shadow-sm p-4 wallet-card">
-    <h2 class="text-center mb-4">Últimos Movimientos</h2>
-    <!-- Alerta -->
-    <div id="alert_placeholder"></div>
+  <div class="wallet-card fade-in">
     
-    <!-- FILTRO POR TIPO -->
-    <div class="mb-3">
-        <label for="filtro_tipo" class="form-label">Filtrar por:</label>
-        <select id="filtro_tipo" class="form-select">
-            <option value="todos">Todos los movimientos</option>
-            <option value="deposito">Depósitos</option>
-            <option value="compra">Compras</option>
-            <option value="pago">Pagos</option>
-            <option value="transferencia">Transferencias Recibidas</option>
-        </select>
-    </div>
-    <!-- Lista de Movimientos -->
-    <ul id="lista_movimientos" class="list-group list-group-flush">
-    </ul>
-    <!-- Mensaje sin movimientos -->
-    <div id="mensaje_sin_movimientos" class="text-center text-muted mt-3" style="display: none;">
-        <small>No hay movimientos para mostrar.</small>
+    <div class="header-simple border-bottom">
+        <a href="#" id="btn_menu" class="btn-volver"><i class="bi bi-arrow-left"></i></a>
+        <h2>Movimientos</h2>
     </div>
 
-    <!-- Botón de Volver -->
-    <div class="d-grid mt-4">
-      <a href="" id="btn_menu" class="btn btn-secondary">Volver al Menú</a>
-    </div>
+    <div class="contenido-app pt-3">
+        <div id="alert_placeholder"></div>
 
-    <!-- Botón de Cerrar Sesión -->
-    <div class="d-grid mt-4">
-      <a href="" id="btn_logout" class="btn btn-link text-danger">Cerrar Sesión</a>
+        <div class="d-flex align-items-center gap-2 mb-4">
+            <i class="bi bi-funnel text-muted"></i>
+            <select id="filtro_tipo" class="form-select form-select-sm rounded-pill border-0 bg-light text-muted fw-bold">
+                <option value="todos">Todos los movimientos</option>
+                <option value="deposito">Depósitos</option>
+                <option value="compra">Compras</option>
+                <option value="pago">Pagos de Servicios</option>
+                <option value="transferencia">Transferencias</option>
+            </select>
+        </div>
+
+        <ul id="lista_movimientos" class="list-group list-group-flush">
+            </ul>
+
+        <div id="mensaje_sin_movimientos" class="text-center mt-5 text-muted" style="display: none;">
+            <div class="mb-3">
+                <i class="bi bi-receipt fs-1 opacity-25"></i>
+            </div>
+            <p>No se encontraron movimientos con este filtro.</p>
+        </div>
     </div>
   </div>
 
-  <!-- Link a Bootstrap 5.3.8 JS Bundle -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  <!-- Link a JQuery 3.x -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-  <!-- Link a JQuery propios -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="./assets/js/script.js"></script>
 </body>
 </html>

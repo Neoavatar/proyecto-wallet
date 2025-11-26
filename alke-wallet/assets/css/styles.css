@@ -1,66 +1,191 @@
-.marquesina {
-  width: 100%;
-  overflow: hidden; /* Oculta el texto que se sale de los bordes */
-  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+/* Importamos la fuente 'Poppins' para darle el toque moderno */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+    /* Variables de color basadas en tu referencia */
+    --color-principal: #6C63FF; /* Morado vibrante */
+    --color-principal-oscuro: #5a52d5;
+    --color-fondo: #F5F6FA; /* Gris muy claro para el fondo */
+    --color-blanco: #ffffff;
+    --color-texto: #333333;
+    --color-gris-claro: #E0E0E0;
+    --radio-borde: 30px; /* Bordes muy redondeados estilo móvil */
 }
 
-.texto-marquesina {
-  display: inline-block; /* Permite aplicar transformaciones */
-  padding-left: 100%; /* Inicia la animación desde la derecha */
-  animation: marquesina 10s linear infinite; /* Aplica la animación */
-}
-
-/* Define la animación */
-/*
-@keyframes marquesina {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%); /* Mueve el texto de izquierda a derecha 
-  }
-}
-*/
-
-.texto-centrado {
-  width: 100%;
-  overflow: hidden;
-}
-
-.texto-animado {
-  display: inline-block; /* Permite aplicar transformaciones */
-  animation: texto-centrado 2s forwards ease-out; /* Aplica la animación */
-}
-
-/* Define la animación */
-@keyframes texto-centrado {
-    0% {
-        /* Comienza completamente fuera de la vista a la izquierda */
-        transform: translateX(100vw); 
-        opacity: 0;
-    }
-    100% {
-        /* Termina en su posición final centrada y visible */
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-html {
-    height: 100%;
-}
 body {
-    min-height: 100%;
+    background-color: var(--color-fondo);
+    font-family: 'Poppins', sans-serif;
+    color: var(--color-texto);
     display: flex;
-    /*align-items: center;*/
-    /*justify-content: center;*/
-    background-color: #f8f9fa;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
 }
+
+/* Simulación del "Cuerpo del Celular" */
 .wallet-card {
+    background-color: var(--color-blanco);
+    border-radius: var(--radio-borde);
+    border: none;
+    box-shadow: 0 20px 40px rgba(108, 99, 255, 0.15); /* Sombra suave morada */
     width: 100%;
-    max-width: 400px;
-    margin: auto; /* Centrado */
-    margin-top: 2rem;
+    max-width: 380px; /* Ancho típico de un celular */
+    min-height: 750px; /* Altura típica */
+    position: relative;
+    padding: 0 !important; /* Quitamos padding por defecto */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* HEADER MORADO (Parte superior con saldo) */
+.header-app {
+    background-color: var(--color-principal);
+    color: var(--color-blanco);
+    padding: 3rem 1.5rem 2rem 1.5rem;
+    border-bottom-left-radius: var(--radio-borde);
+    border-bottom-right-radius: var(--radio-borde);
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-bottom: 1.5rem;
+}
+
+.header-app h1 {
+    font-weight: 600;
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+.header-app p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-bottom: 5px;
+}
+
+/* HEADER SIMPLE (Para páginas internas como Enviar/Depositar) */
+.header-simple {
+    background-color: var(--color-blanco);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.header-simple h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--color-texto);
+}
+
+/* CONTENEDOR INTERNO */
+.contenido-app {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    flex-grow: 1; /* Ocupa el espacio restante */
+}
+
+/* BOTONES PERSONALIZADOS */
+.btn-primary {
+    background-color: var(--color-principal);
+    border: none;
+    border-radius: 50px; /* Estilo "Pill" (Pastilla) */
+    padding: 12px 20px;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(108, 99, 255, 0.3);
+    transition: transform 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-principal-oscuro);
+    transform: translateY(-2px);
+}
+
+.btn-outline-primary {
+    color: var(--color-principal);
+    border-color: var(--color-principal);
+    border-radius: 50px;
+}
+
+.btn-volver {
+    background-color: #f1f3f5;
+    color: #666;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+.btn-volver:hover {
+    background-color: #e9ecef;
+    color: #333;
+}
+
+/* GRID DE ACCIONES (Botones del menú) */
+.grid-acciones {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+    gap: 15px;
     margin-bottom: 2rem;
+}
+
+.accion-item {
+    background-color: var(--color-blanco);
+    border: 1px solid #f0f0f0;
+    border-radius: 20px;
+    padding: 15px 10px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--color-texto);
+    transition: all 0.2s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.accion-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-principal);
+    color: var(--color-principal);
+    box-shadow: 0 10px 20px rgba(108, 99, 255, 0.15);
+}
+
+.icono-grande {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    color: var(--color-principal);
+    display: block;
+}
+
+/* INPUTS ESTILIZADOS */
+.form-control, .form-select {
+    background-color: #F8F9FA;
+    border: none;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+.form-control:focus {
+    background-color: #fff;
+    box-shadow: 0 0 0 2px var(--color-principal);
+}
+
+/* LISTAS LIMPIAS */
+.list-group-item {
+    border: none;
+    padding: 15px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+.list-group-item:last-child {
+    border-bottom: none;
+}
+
+/* ANIMACIONES */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
