@@ -1,15 +1,14 @@
-/* Importamos la fuente 'Poppins' para darle el toque moderno */
+/* Importamos la fuente 'Poppins' */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
 :root {
-    /* Variables de color basadas en tu referencia */
     --color-principal: #6C63FF; /* Morado vibrante */
     --color-principal-oscuro: #5a52d5;
     --color-fondo: #F5F6FA; /* Gris muy claro para el fondo */
     --color-blanco: #ffffff;
     --color-texto: #333333;
     --color-gris-claro: #E0E0E0;
-    --radio-borde: 30px; /* Bordes muy redondeados estilo móvil */
+    --radio-borde: 30px; /* Bordes redondeados */
 }
 
 body {
@@ -23,15 +22,13 @@ body {
     margin: 0;
 }
 
-/* Simulación del "Cuerpo del Celular" */
 .wallet-card {
     background-color: var(--color-blanco);
     border-radius: var(--radio-borde);
     border: none;
-    box-shadow: 0 20px 40px rgba(108, 99, 255, 0.15); /* Sombra suave morada */
     width: 100%;
-    max-width: 380px; /* Ancho típico de un celular */
-    min-height: 750px; /* Altura típica */
+    max-width: 400px;
+    min-height: 750px;
     position: relative;
     padding: 0 !important; /* Quitamos padding por defecto */
     overflow: hidden;
@@ -39,16 +36,17 @@ body {
     flex-direction: column;
 }
 
-/* HEADER MORADO (Parte superior con saldo) */
+/* Parte superior saldo) */
 .header-app {
     background-color: var(--color-principal);
     color: var(--color-blanco);
-    padding: 3rem 1.5rem 2rem 1.5rem;
-    border-bottom-left-radius: var(--radio-borde);
-    border-bottom-right-radius: var(--radio-borde);
+    padding: 2rem 1.5rem;
+    border-radius: 25px;
+    /*border-bottom-left-radius: var(--radio-borde);
+    /*border-bottom-right-radius: var(--radio-borde);*/
     text-align: center;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .header-app h1 {
@@ -63,7 +61,6 @@ body {
     margin-bottom: 5px;
 }
 
-/* HEADER SIMPLE (Para páginas internas como Enviar/Depositar) */
 .header-simple {
     background-color: var(--color-blanco);
     padding: 1.5rem;
@@ -78,17 +75,16 @@ body {
     color: var(--color-texto);
 }
 
-/* CONTENEDOR INTERNO */
 .contenido-app {
-    padding: 0 1.5rem 1.5rem 1.5rem;
-    flex-grow: 1; /* Ocupa el espacio restante */
+    padding: 0 2rem 2rem 2rem;
+    flex-grow: 1;
 }
 
 /* BOTONES PERSONALIZADOS */
 .btn-primary {
     background-color: var(--color-principal);
     border: none;
-    border-radius: 50px; /* Estilo "Pill" (Pastilla) */
+    border-radius: 50px;
     padding: 12px 20px;
     font-weight: 600;
     box-shadow: 0 4px 10px rgba(108, 99, 255, 0.3);
@@ -123,10 +119,10 @@ body {
     color: #333;
 }
 
-/* GRID DE ACCIONES (Botones del menú) */
+/* Botones del menú */
 .grid-acciones {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+    grid-template-columns: repeat(3, 1fr);
     gap: 15px;
     margin-bottom: 2rem;
 }
@@ -157,7 +153,6 @@ body {
     display: block;
 }
 
-/* INPUTS ESTILIZADOS */
 .form-control, .form-select {
     background-color: #F8F9FA;
     border: none;
@@ -182,10 +177,16 @@ body {
 
 /* ANIMACIONES */
 .fade-in {
-    animation: fadeIn 0.5s ease-in;
+    animation: fadeIn 2s ease-in;
 }
 
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+.contacto_item.active {
+    background-color: var(--color-principal) !important;
+    border-color: var(--color-principal) !important;
+    border-radius: 10px;    
 }

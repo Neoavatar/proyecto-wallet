@@ -4,18 +4,15 @@
 const tiempo_espera = 2000;
 const contenedor_alerta = document.getElementById('alert_placeholder');
 
-// Función auxiliar: Obtiene la fecha actual formateada (Ej: 25 Nov 2025)
+// Obtiene la fecha actual formateada
 const obtener_fecha_actual = () => {
     const opciones = { year: 'numeric', month: 'short', day: 'numeric' };
     return new Date().toLocaleDateString('es-ES', opciones);
 };
 
-// Función auxiliar: Guarda un movimiento en el historial (LocalStorage)
+//Guarda un movimiento en el historial (LocalStorage)
 const registrar_movimiento = (tipo, descripcion, monto) => {
-    // 1. Obtenemos el historial actual o un array vacío si es nuevo
     let historial = JSON.parse(localStorage.getItem('historial_movimientos')) || [];
-    
-    // 2. Creamos el objeto del nuevo movimiento
     const nuevo_movimiento = {
         tipo: tipo, // 'deposito', 'transferencia', 'compra', etc.
         descripcion: descripcion,
@@ -23,11 +20,8 @@ const registrar_movimiento = (tipo, descripcion, monto) => {
         monto: monto,
         id: Date.now() // Usamos la hora como ID único
     };
-
-    // 3. Agregamos al principio de la lista (para que salga primero el más reciente)
     historial.unshift(nuevo_movimiento);
-
-    // 4. Guardamos en localStorage
+    //Guardamos en localStorage
     localStorage.setItem('historial_movimientos', JSON.stringify(historial));
 };
 
@@ -310,3 +304,9 @@ $(document).ready(function() {
         });
     }
 });
+
+function sumarMonto(valor) {
+    let input = document.getElementById('monto_deposito');
+    let actual = parseInt(input.value) || 0;
+    input.value = actual + valor;
+}
